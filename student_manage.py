@@ -81,7 +81,9 @@ def DisplayForm():
     #creating delete button
     btn_delete = Button(LeftViewForm, text="Delete",font=('Sans-serif',15), command=Delete)
     btn_delete.pack(side=TOP, padx=10, pady=10, fill=X)
-   #setting scrollbar
+    btn_exit = Button(LeftViewForm, text="Exit",font=('Sans-serif',15), command=Exit)
+    btn_exit.pack(side=BOTTOM, padx=10, pady=10, fill=X)
+    #setting scrollbar
     scrollbarx = Scrollbar(MidViewForm, orient=HORIZONTAL)
     scrollbary = Scrollbar(MidViewForm, orient=VERTICAL)
     tree = ttk.Treeview(MidViewForm,columns=("Student Id", "Name", "Contact", "Email","Rollno","Branch"),
@@ -157,6 +159,12 @@ def Update():
             DisplayData()
             cursor.close()
             conn.close()
+
+def Exit():
+    res = tkMessageBox.askyesnocancel('Notification','Do you want to exit?')
+    if(res == True):
+        exit()
+        conn.close()
 
 def Reset():
     #clear current data from table
